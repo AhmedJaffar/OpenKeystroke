@@ -621,16 +621,16 @@ def _studio_config() -> ExperimentConfig | None:
             "Seeds (comma-separated)", ",".join(map(str, base.seeds)), key=f"st_seeds_{kind}"
         )
     with st.expander("Preprocessing, features, evaluation", expanded=False):
-        a = st.columns(4)
-        norm = a[0].selectbox("Normalise", ["peak", "rms", "none"], key="st_norm")
-        dc = a[1].checkbox("Remove DC", True, key="st_dc")
-        vec = a[2].selectbox(
+        p = st.columns(4)
+        norm = p[0].selectbox("Normalise", ["peak", "rms", "none"], key="st_norm")
+        dc = p[1].checkbox("Remove DC", True, key="st_dc")
+        vec = p[2].selectbox(
             "Vector features (classical)",
             [n for n, c in EXTRACTORS.items() if c.kind == "vector"],
             index=2,
             key="st_vec",
         )
-        ten = a[3].selectbox(
+        ten = p[3].selectbox(
             "Spectrogram features (CNN)",
             [n for n, c in EXTRACTORS.items() if c.kind == "tensor"],
             index=2,
