@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openkeystroke"
+version = "0.1.0"
+description = "Open research platform for authorized acoustic side-channel experiments and privacy defense evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "scikit-learn>=1.4",
+  "torch>=2.2",
+  "pydantic>=2.5",
+  "click>=8.1",
+  "pyyaml>=6.0",
+  "soundfile>=0.12",
+  "pandas>=2.1",
+  "plotly>=5.18",
+  "matplotlib>=3.8",
+  "streamlit>=1.50",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov", "hypothesis>=6.90", "ruff>=0.5", "mypy>=1.8", "pandas-stubs", "types-PyYAML"]
+
+[project.scripts]
+openkeystroke = "openkeystroke.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+openkeystroke = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -ra"
+markers = ["slow: slower integration tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning:torch"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "NPY"]
+ignore = ["E501", "B008", "SIM108"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = true
+no_implicit_optional = true
+plugins = ["pydantic.mypy"]
