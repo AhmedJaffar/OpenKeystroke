@@ -22,8 +22,8 @@ from .base import BaseClassifier, TrainingHistory
 
 class _Scaler:
     def __init__(self) -> None:
-        self.mean = np.zeros(1)
-        self.scale = np.ones(1)
+        self.mean: np.ndarray = np.zeros(1)
+        self.scale: np.ndarray = np.ones(1)
 
     def fit(self, X: np.ndarray) -> _Scaler:
         self.mean = X.mean(axis=0)
