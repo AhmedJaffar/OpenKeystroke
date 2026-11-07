@@ -132,11 +132,6 @@ CI runs lint, type checks and tests on Python 3.10–3.13.
 Synthetic data only so far; GPU/AMP paths are untested; bit-exact reproducibility assumes the same machine and thread count;
 the 2D CNN is under-tuned. Validation on real, consented laboratory recordings is the main open item.
 
-## About
-
-Created and maintained by **[Ahmed Jaffar](https://github.com/AhmedJaffar)**. Issues and contributions are welcome,
-especially from researchers with consented laboratory recordings and defense ideas.
-
 ## License
 
 MIT. See [LICENSE](LICENSE).
