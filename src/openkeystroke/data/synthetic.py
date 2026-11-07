@@ -111,7 +111,7 @@ def generate_synthetic(cfg: SyntheticConfig) -> Dataset:
                     fj = np.exp(rng.normal(0, 0.03)) * fshift
                     tt = np.maximum(t - onset, 0.0)
                     gate = (t >= onset).astype(float)
-                    x = np.zeros(n)
+                    x: np.ndarray = np.zeros(n)
                     for fr, a, tau in zip(cp["freqs"], cp["amps"], cp["taus"], strict=True):
                         ph = rng.uniform(0, 2 * np.pi)
                         x += (

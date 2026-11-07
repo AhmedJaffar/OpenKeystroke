@@ -911,12 +911,13 @@ def page_eval() -> None:
                 ]
             )
             fig = go.Figure()
-            for k, g in df.groupby("label"):
+            for k in df["label"].unique():
+                g = df[df["label"] == k]
                 fig.add_scatter(
                     x=[k] * len(g),
                     y=g["accuracy"],
                     mode="markers",
-                    name=k,
+                    name=str(k),
                     text=g["seed"],
                     hovertemplate="seed %{text}: %{y:.3f}",
                 )
